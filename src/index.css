@@ -1,3 +1,6 @@
+:root{
+--orange: rgb(236, 167, 2);
+}
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -5,9 +8,633 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
+  overflow-x: hidden;
 }
-
+html{
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+#root{
+   scroll-behavior: smooth;
+  width: 100vw;
+  overflow-x: hidden;
+  height: fit-content;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 10vh;
+  overflow: scroll;
+  overflow-x: hidden;
+}
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+nav{
+width: 100%;
+height: 5vh;
+display: flex;
+justify-items: baseline;
+justify-content: space-between;
+flex-direction: row;
+margin-bottom: 1rem;
+padding: 1rem;
+}
+.logoContainer{
+height: 100%;
+display: flex;
+flex-direction: row;
+}
+.logoOrange{
+  height: 100%;
+  width: auto;
+  padding-right: 1rem;
+  padding-left: 0.5rem;
+transform: translateY(20%);
+}
+.nameofStore{
+  font-size: 2rem;
+  margin-top:0;
+}
+.searchField{
+  width: 90%;
+  height: 2rem;
+  margin-bottom: 2rem;
+}
+.searchIcon{
+  background-image: url(./components/images/search.png);
+  display: block;
+  background-size: cover;
+  background-repeat:no-repeat;
+  background-position: center;
+  height: 1rem;
+  width: 1rem;
+  margin-left: 1rem;
+  justify-self: left;
+  transform: translateY(170%);
+}
+.searchbar{
+  width: calc(100% - 2.5rem);
+  height: 2rem;
+  padding-left: 2.5rem;
+  font-size: 1.5rem;
+  border: none;
+}
+.Bell{
+  padding-right: 1rem;
+  justify-self: flex-end;
+}
+.Slideshow{
+  height: fit-content;
+  width: 100vw;
+  overflow: hidden;
+  position: relative;
+  overflow: scroll;
+}
+.popularP{
+  padding-left: 1rem;
+  font-size: 1.5rem;
+  margin-bottom: 0;
+}
+
+.SlideshowContainer{
+  position: relative;
+  width: fit-content;
+  display: flex;
+  height: 30vh;
+  flex-direction: row;
+  padding-right: 3rem;
+  
+}
+/* .Slideshow::after{
+content: "";
+pointer-events: none;
+display: block;
+position: absolute;
+width: 100vw;
+height: 20vh;
+background: rgb(255,255,255);
+background: linear-gradient(270deg, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 24%);} */
+
+.SlideshowContainer > div{
+  margin: 0.5%;
+  display: block;
+  width: 25vh;
+  height: calc(100% - 2rem);
+
+}
+
+.SlideshowContainer > div::after{
+content: "";
+display: block;
+height: 100%;
+width: 100%;
+background: rgb(0,0,0);
+background: linear-gradient(0deg, rgba(0,0,0,0.41827170321253504) 0%, rgba(255,255,255,0) 50%);
+}
+
+.SlideshowBeer{
+position: relative;
+background-image: url(./components/images/beer/elhefe.png);
+background-position: center;
+background-size: contain;
+
+}
+.SlideshowBeer > p:first-child{
+  position: absolute;
+  color: white;
+  font-size: 1.5rem;
+  padding-left: 0.5rem;
+  padding-bottom: 0;
+  margin-bottom: 0.8rem;
+  bottom: 5%
+}
+.SlideshowBeer > p:nth-child(2){
+  position: absolute;
+  color: white;
+  font-size: 1rem;
+  padding-left: 0.5rem;
+  margin-bottom: 0.2rem;
+  bottom: 0%;
+
+}
+.cataloguecontainer{
+  height: 200vh;
+  width: 100vw;
+  display: grid;
+  position: relative;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: repeat(auto 1f);
+}
+.cataloguecontainer > div{
+  margin: 5%;
+  display: block;
+} 
+.CatalogueItemOuterCont{
+  position: relative;
+}
+.CatItemPhoto{
+  height: 80%;
+  
+}
+.CatItemTitle{
+  font-size: 1.2rem;
+}
+.filterandsearch{
+  display:flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  height: 5vh;
+  width: calc(100vw - 2rem);
+  margin-bottom: 2vh;
+}
+.filterandsearch > div{
+  display: flex;
+  height: 100%;
+  width: 20%;
+  flex-direction: row;
+
+  text-align: center;
+}
+.filterandsearch > div > p{
+margin: 0;
+padding: 0;
+padding-left: 1rem;
+padding-top:0.5rem ;
+justify-self: baseline;
+}
+.filterandsearch > p{
+  margin: 0;
+  padding: 0;
+  padding-top:0.5rem ;
+  justify-self: baseline;
+  }
+.filter{
+  height: 100%;
+  width: 80%;
+  display: block;
+  background-size: contain;
+  background-repeat: no-repeat;
+
+}
+.sort{
+
+  height:100%;
+  width: 80%;
+  display: block;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.icon{
+ color: black;
+}
+.BottomNav{
+  transition: transform ease-out 0.2s;
+  display: inline-block;
+  position: fixed;
+  background-color: white;
+  height: 10vh;
+  width: 100vw;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  padding-bottom: 0;
+  font-size: 3rem;
+  z-index: 999;
+}
+.BottomNav > div{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 33.33%;
+}
+.BottomNav > div > p{
+  font-size: 1rem;
+  margin-top: 0.2rem;
+}
+.home{
+  background-image: url("./components/images/home.svg");
+display: block;
+height: 100%;
+width: 20%;
+background-size: contain;
+background-position: center;
+background-repeat: no-repeat;
+transform: translateY(10%);
+fill: gray;
+}
+.shopping{
+  background-image: url("./components/images/shopping.svg");
+display: block;
+height: 100%;
+width: 20%;
+background-size: contain;
+background-position: center;
+background-repeat: no-repeat;
+transform: translateY(10%);
+fill: gray;
+}
+.heart{
+  background-image: url("./components/images/heart.svg");
+display: block;
+height: 100%;
+width: 20%;
+background-size: contain;
+background-position: center;
+background-repeat: no-repeat;
+transform: translateY(10%);
+fill: red;
+}
+.addToWish{
+position: absolute;
+display: block;
+background-size: contain;
+background-position: center;
+background-repeat: no-repeat;
+height: 10%;
+width: 10%;
+right: 10px;
+top: 5px;
+}
+.addToWishAbout{
+
+  display: block;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 2rem;
+  width: 2rem;
+  right: 10px;
+  top: 5px;
+}
+.nopointer{
+  pointer-events: none;
+}
+.card{
+  border-radius: 5px;
+  border-color: lightgray;
+  border-style: solid;
+  border-width: 1px;
+}
+.cardNoRadiusBottom{
+  -webkit-box-shadow: 0px 1px 27px 0px rgba(184,184,184,1);
+  -moz-box-shadow: 0px 1px 27px 0px rgba(184,184,184,1);
+  box-shadow: 0px 1px 27px 0px rgba(184,184,184,1);
+}
+
+[data-img="elhefe.png"]{
+  background-image: url("./components/images/beer/elhefe.png");
+}
+ [data-img="githop.png"]{
+  background-image: url("./components/images/beer/githop.png");
+}
+[data-img="hoppilyeverafter.png"]{
+  background-image: url("./components/images/beer/hoppilyeverafter.png");
+}
+[data-img="row26.png"]{
+  background-image: url("./components/images/beer/row26.png");
+}
+[data-img="sleighride.png"]{
+  background-image: url("./components/images/beer/sleighride.png");
+}
+[data-img="fairytaleale.png"]{
+  background-image: url("./components/images/beer/fairytaleale.png");
+}
+[data-img="hollaback.png"]{
+  background-image: url("./components/images/beer/hollaback.png");
+}
+[data-img="mowintime.png"]{
+  background-image: url("./components/images/beer/mowintime.png");
+}
+[data-img="ruinedchildhood.png"]{
+  background-image: url("./components/images/beer/ruinedchildhood.png");
+}
+[data-img="steampunk.png"]{
+  background-image: url("./components/images/beer/steampunk.png");
+}
+.cartpage{
+  z-index: 999;
+  width: 100%;
+  min-height: 100vh;
+  max-height: fit-content;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 2rem;
+  align-items: center;
+}
+.cartPageLogo{
+  width: 3rem;
+  height: 3rem;
+  align-self: center;
+}
+.cartBackground{
+  display: flex;
+  flex-direction: column;
+  background-color: var(--orange);
+  height: 10vh;
+  width: 90vw;
+  justify-self: center;
+}
+.CartName{
+  padding: 0;
+  margin: 0;
+  font-size: 2rem;
+  align-self: center;
+}
+.aboutBeer{
+  z-index: 999;
+  width: 100%;
+  min-height: 100vh;
+  max-height: fit-content;
+  display: block;
+  margin-bottom: 2rem;
+}
+.aboutBeer > .Slideshow > .SlideshowContainer{
+  height: fit-content;
+}
+.aboutBeer > .Slideshow > .SlideshowContainer > .SlideshowBeer{
+height:50vh;
+background-repeat: no-repeat;
+background-size: contain;
+width: 80vw;
+margin: 0.2rem;
+}
+.aboutBeer > .Slideshow > .SlideshowContainer > .SlideshowBeer::after{
+  content:unset;
+}
+.Beerinfo{
+  padding-right: 1rem;
+  padding-left: 1rem;
+  display: grid;
+  grid-template-rows: auto repeat(auto, 5vh);
+  grid-template-columns: calc(25vw - 0.5rem) calc(25vw - 0.5rem) calc(25vw - 0.5rem) calc(25vw - 0.5rem);
+}
+.quantityCont{
+  grid-column: span 4;
+}
+.buttons{
+  grid-column: span 4;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+.descriptioincont{
+  grid-column: span 4;
+}
+.cursor{
+  cursor: pointer;
+}
+.strong{
+  font-weight: 700;
+}
+.cartAbout{
+  width: 20%;
+  height: 100%;
+  background-color: #EFEFEF;
+
+}
+.number{
+ width: 4rem; 
+}
+.quantityCont{
+  text-align: center;
+display: flex;
+flex-direction: column;
+align-items: center;
+
+}
+.counter{
+  justify-content: center;
+  justify-items: center;
+  text-align: center;
+  display: flex;
+  background-color: #EFEFEF;
+  height: 3rem;
+  width: 10rem;
+  justify-self: center;
+  margin-bottom: 2rem;
+  border-radius: 2rem;
+  overflow: hidden;
+}
+.counter > button, .counter > input {
+  border: none;
+  border-style: none;
+  background-color:#EFEFEF;
+  text-align: center;
+  font-weight: 500;
+  font-size: 2rem;
+}
+.addtoCart{
+  width: 40%;
+  height: 4rem;
+  border-radius: 2rem;
+  border-style: none;
+color: white;
+background-color: var(--orange);
+}
+.absvgcont{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+text-align: center;
+  background-color:#EFEFEF;
+  width: 4em;
+  height: 4rem;
+  border-radius: 50%;
+}
+/* .absvgcont p{
+  margin: 0;
+  padding: 0;
+  font-size: 0.9rem;
+} */
+.SVGAbout{
+  fill:gray;
+height: 1.8rem;
+width: 1.8rem;
+align-self: center;
+}
+.SVGAbout:hover{
+  background-color:var(--orange)
+}
+.Beerinfo > div:first-child {
+display: flex;
+flex-direction: column;
+height: 6rem;
+}
+.Beerinfo > div:first-child > .heart{
+  height: 2rem;
+  width: 2rem;
+  margin-bottom: 1rem;
+}
+.titleAbout{
+  font-size: 1rem;
+  font-weight: 800;
+  white-space: normal;
+  margin: 0;
+  padding: 0;
+}
+.Beerinfo > div:nth-child(2){
+ grid-column: 4;
+ display: flex;
+ flex-direction: 0;
+
+}
+.priceAbout{
+  padding-top:3rem;
+transform: translateX(-20%);
+  font-size: 2rem;
+  white-space: nowrap;
+  margin: 0;
+  font-weight: 600;
+  color: var(--orange);
+}
+.heart{
+  position: relative;
+}
+.absvgcont{
+  position: relative;
+}
+.wishLength{
+  color: white;
+ width: 1.5rem;
+ height: 1.5rem;
+ font-size: 1rem;
+ border-radius: 50%;
+ position: absolute;
+background-color: var(--orange);
+text-align: center;
+transform: translateX(70%);
+}
+.wishLength2{
+  color: white;
+  width: 1.5rem;
+  height: 1.5rem;
+  font-size: 1rem;
+  border-radius: 50%;
+  position: absolute;
+ background-color: var(--orange);
+ text-align: center;
+  right: 0;
+  top: 0;
+  position: absolute;
+}
+.cartItem{
+  display: grid;
+  grid-template-columns: 5rem 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  grid-column-gap:0.5rem;
+  width: calc(100% - 2rem);
+  padding-right: 1rem;
+  padding-left: 1rem;
+  position: relative;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+.beerTitle{
+  font-size: 1.2rem;
+  white-space: nowrap;
+  margin: 0;
+  font-weight: 700;
+  grid-column-start: 2;
+  grid-column-end: 4;
+}
+.priceCart{
+  grid-column: 2;
+  grid-row: 2;
+  color: green;
+  font-size: 1.2rem;
+  margin: 0;
+  font-weight: 600;
+}
+.imgCartBeer{
+  height: 6rem;
+  width: 5rem;
+  display: block;
+  grid-row: span 2;
+  background-repeat: no-repeat;
+ background-position: center;
+background-size: contain;
+justify-self: center;
+}
+.edit{
+  grid-row: 2;
+  grid-column: 3;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+.plus, .minus{
+justify-self: center;
+font-size: 2rem;
+padding: 0;
+margin: 0;
+}
+
+.total{
+  width: calc(100% - 2rem);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.total > p:first-child{
+  font-size: 2rem;
+}
+.total > p:nth-child(2){
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--orange);
+}
+.deleteItem{
+  position: absolute;
+  right: 2.5rem;
+  top: 0.5rem;
+font-weight: 600;
 }
