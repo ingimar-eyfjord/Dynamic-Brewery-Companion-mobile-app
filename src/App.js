@@ -7,7 +7,11 @@ import Filterandsearch from "./components/filterandSearch"
 import BottomNav from "./components/bottomnav"
 import AboutBeer from "./components/aboutBeer"
 import CartPage from "./components/cartPage"
-import { Route, Link } from 'react-router-dom'
+import { Route } from 'react-router-dom'
+import Checkout from "./components/checkout"
+import CheckoutRewview from "./components/checkoutreview"
+import PaymentConfirm from "./components/paymentConfirm"
+import Wishlist from "./components/wishlist"
 function App() {
   const [transfrom, Settransform] = useState(100)
   let lastScrollTop = 0;
@@ -41,45 +45,45 @@ function App() {
   const beersArray = []
   const [beers, setBeers] = useState(beersArray)
 
-  // function Counter() {
+  function Counter() {
 
-  //   useInterval(() => {
-  //     fetch(URL, {
-  //       method: "get",
-  //       headers: {
-  //         "Content-Type": "application/json; charset=utf-8",
-  //       },
-  //     }).then(res => res.json()).then(data => setData(data));
+    useInterval(() => {
+      fetch(URL, {
+        method: "get",
+        headers: {
+          "Content-Type": "application/json; charset=utf-8",
+        },
+      }).then(res => res.json()).then(data => setData(data));
 
-  //     function setData(data) {
-  //       setBartenders(data.bartenders)
-  //       setServing(data.serving)
-  //       setStorage(data.storage)
-  //       setTaps(data.taps)
-  //       setQueue(data.queue)
-  //     }
-  //   }, 5000);
-  // }
-  // function useInterval(callback, delay) {
-  //   const savedCallback = useRef();
+      function setData(data) {
+        setBartenders(data.bartenders)
+        setServing(data.serving)
+        setStorage(data.storage)
+        setTaps(data.taps)
+        setQueue(data.queue)
+      }
+    }, 5000);
+  }
+  function useInterval(callback, delay) {
+    const savedCallback = useRef();
 
-  //   // Remember the latest function.
-  //   useEffect(() => {
-  //     savedCallback.current = callback;
-  //   }, [callback]);
+    // Remember the latest function.
+    useEffect(() => {
+      savedCallback.current = callback;
+    }, [callback]);
 
-  //   // Set up the interval.
-  //   useEffect(() => {
-  //     function tick() {
-  //       savedCallback.current();
-  //     }
-  //     if (delay !== null) {
-  //       let id = setInterval(tick, delay);
-  //       return () => clearInterval(id);
-  //     }
-  //   }, [delay]);
-  // }
-  // Counter()
+    // Set up the interval.
+    useEffect(() => {
+      function tick() {
+        savedCallback.current();
+      }
+      if (delay != null) {
+        let id = setInterval(tick, delay);
+        return () => clearInterval(id);
+      }
+    }, [delay]);
+  }
+  Counter()
 
   useEffect(() => {
     fetch(Beers, {
@@ -89,7 +93,6 @@ function App() {
       },
     }).then(res => res.json()).then(data => setBeers(data));
   }, [])
-  const [display, setDisplay] = useState("none")
   const aboutArray = [];
   const [about, setAbout] = useState(aboutArray)
   function openAboutBeer(event) {
@@ -97,12 +100,7 @@ function App() {
     const newarr = [...beers]
     const whatBeer = newarr.filter(nameis => nameis.name == name);
     setAbout(whatBeer)
-    setDisplay("block")
-    window.scrollTo(0, 0);
-  }
-  function CloseAboutBeer(event) {
-    setDisplay("none")
-    window.scrollTo(0, 0);
+
   }
   const wishlistArr = []
   const [whishlist, setWishlist] = useState(wishlistArr)
@@ -153,15 +151,41 @@ function App() {
     }
     setCart(cart.concat(cartPut))
   }
+  function editNumCart(howMany, whatBeer) {
+    const copy = [...cart]
+    const item = copy.filter(item => item[0].name == whatBeer)
+    let filter = copy.filter(item => item[0].name != whatBeer)
+    if (!howMany == 0) {
+      let i;
+      for (i = 0; i < howMany; i++) {
+        filter.push(item[0])
+      }
+      setCart(filter)
+    } else {
+      setCart(filter)
+    }
+  }
+  function deleteItem(whatBeer) {
+    const copy = [...cart]
+    let filter = copy.filter(item => item[0].name != whatBeer)
+    setCart(filter)
+  }
+  const paymentformObj = {}
+  const [paymentForm, setpaymentForm] = useState(paymentformObj)
+
   return (
     <>
-      <Nav />
-      <AboutBeer whishlist={whishlist} beers={beers} cart={cart} makeWishList={makeWishList} makeCart={makeCart} CloseAboutBeer={CloseAboutBeer} display={display} about={about}></AboutBeer>
-      <Route path="/cart" component={CartPage} cart={cart}></Route>
-      <Searchbar />
-      <Slideshow />
-      <Filterandsearch />
-      <Catalogue whishlist={whishlist} makeWishList={makeWishList} openAboutBeer={openAboutBeer} beers={beers} />
+      <Route path="/home" render={() => <Nav />} />
+      <Route path="/aboutBeer" render={() => <AboutBeer whishlist={whishlist} beers={beers} cart={cart} makeWishList={makeWishList} makeCart={makeCart} about={about} taps={taps.filter(name => name.beer == about[0].name)} />} />
+      <Route path="/cart" render={() => <CartPage cart={cart} deleteItem={deleteItem} editNumCart={editNumCart} />} />
+      <Route path="/home" render={() => <Searchbar />} />
+      <Route path="/home" render={() => <Slideshow />} />
+      <Route path="/home" render={() => <Filterandsearch />} />
+      <Route path="/home" render={() => <Catalogue taps={taps} whishlist={whishlist} makeWishList={makeWishList} openAboutBeer={openAboutBeer} beers={beers} isAuthed={true} />} />
+      <Route path="/checkout" render={() => <Checkout cart={cart} setpaymentForm={setpaymentForm} />} />
+      <Route path="/CheckoutRewview" render={() => <CheckoutRewview paymentForm={paymentForm} deleteItem={deleteItem} editNumCart={editNumCart} cart={cart} />} />
+      <Route path="/PaymentConfirm" render={() => <PaymentConfirm paymentForm={paymentForm} cart={cart} />} />
+      <Route path="/Wishlist" render={() => <Wishlist taps={taps} whishlist={whishlist} makeWishList={makeWishList} openAboutBeer={openAboutBeer} beers={beers} isAuthed={true} />} />
       <BottomNav whishlist={whishlist} cart={cart} Paralexstyle={Paralexstyle} />
     </>
   )
