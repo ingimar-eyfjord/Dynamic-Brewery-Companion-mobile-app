@@ -12,6 +12,7 @@ body {
   overflow-x: hidden;
 }
 html{
+  background-color: lightgray;
   scroll-behavior: smooth;
   overflow-x: hidden;
 }
@@ -40,7 +41,7 @@ display: flex;
 justify-items: baseline;
 justify-content: space-between;
 flex-direction: row;
-margin-bottom: 1rem;
+padding-bottom: 1rem;
 padding: 1rem;
 }
 .logoContainer{
@@ -61,8 +62,8 @@ transform: translateY(20%);
 }
 .searchField{
   width: 90%;
-  height: 2rem;
-  margin-bottom: 2rem;
+  background-color: white;
+  width: 100vw;
 }
 .searchIcon{
   background-image: url(./components/images/search.png);
@@ -72,7 +73,7 @@ transform: translateY(20%);
   background-position: center;
   height: 1rem;
   width: 1rem;
-  margin-left: 1rem;
+  margin-left: 1.5rem;
   justify-self: left;
   transform: translateY(170%);
 }
@@ -80,6 +81,7 @@ transform: translateY(20%);
   width: calc(100% - 2.5rem);
   height: 2rem;
   padding-left: 2.5rem;
+  margin-left: 1rem;
   font-size: 1.5rem;
   border: none;
 }
@@ -93,13 +95,20 @@ transform: translateY(20%);
   overflow: hidden;
   position: relative;
   overflow: scroll;
+  background-color: white;
 }
 .popularP{
   padding-left: 1rem;
   font-size: 1.5rem;
-  margin-bottom: 0;
+  padding-top: 2rem;
+  margin: 0;
+  width: 100vw;
+  text-align: center;
+  background-color: white;
 }
-
+nav{
+  background-color: white;
+}
 .SlideshowContainer{
   position: relative;
   width: fit-content;
@@ -162,6 +171,7 @@ background-size: contain;
 
 }
 .cataloguecontainer{
+  background-color: white;
   height: 250vh;
   width: 100vw;
   display: grid;
@@ -177,7 +187,9 @@ background-size: contain;
   position: relative;
   padding-bottom: 2rem;
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: repeat(auto 1fr);
+  grid-template-rows: repeat(auto, 2fr);
+  grid-row-gap: 4rem;
+  padding-bottom: 5rem;
 }
 
 .cataloguecontainer > div, .cataloguecontainerwish > div{
@@ -203,7 +215,8 @@ font-weight: 600;
   padding-right: 1rem;
   height: 5vh;
   width: calc(100vw - 2rem);
-  margin-bottom: 2vh;
+  padding-bottom: 2vh;
+  background-color: white;
 }
 .filterandsearch > div{
   display: flex;
@@ -410,24 +423,24 @@ cursor: pointer;
 .cartpage{
   z-index: 999;
   width: 100%;
-  min-height: 80vh;
+  min-height: 100vh;
   height:fit-content;
   display: flex;
   flex-direction: column;
-  margin-bottom: 2rem;
   align-items: center;
   position: relative;
+  background-color: white;
 }
 
 .cartBackground{
   display: flex;
   flex-direction: column;
-  background-image: url("./components/images/receipt.svg");
+  background-image: url("./components/images/ticketwshdowwhite.svg");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: bottom;
   height: fit-content;
-  width: 90vw;
+  width: 100vw;
   z-index: -1;
   justify-self: center;
 align-items: center;
@@ -436,7 +449,7 @@ padding-bottom: 4rem;
 }
 .cartItem {
   background-color: white;
-  width: 75vw !important;
+  width: 90vw !important;
 }
 .CartName{
   padding: 0;
@@ -449,8 +462,9 @@ padding-bottom: 4rem;
   width: 100%;
   min-height: 100vh;
   max-height: fit-content;
+  padding-bottom: 2rem;
   display: block;
-  margin-bottom: 2rem;
+  background-color: white;
 }
 .aboutBeer > .Slideshow > .SlideshowContainer{
   height: fit-content;
@@ -466,6 +480,7 @@ margin: 0.2rem;
   content:unset;
 }
 .Beerinfo{
+  background-color: white;
   padding-right: 1rem;
   padding-left: 1rem;
   display: grid;
@@ -843,6 +858,14 @@ button{
   display: flex;
   flex-direction: row;
   height: 10vh;
+  width: 100vw;
+  justify-content: center;
+  align-items: center;
+  background-image: url("./components/images/ticket.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: bottom;
+  color: white;
 }
 .cartPageLogo{
   padding-right: 1rem;
@@ -854,7 +877,7 @@ button{
 .checkoutCont{
   display: flex;
   flex-direction: column;
-  background-image: url("./components/images/receipt.svg");
+  background-image: url("./components/images/ticket.svg");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: bottom;
@@ -863,8 +886,9 @@ button{
   z-index: -1;
   justify-self: center;
 align-items: center;
-margin-bottom: 2rem;
-padding-bottom: 4rem;
+background-color: white;
+padding-bottom: 2rem;
+padding-bottom: 1rem;
 }
 
 .contactTitle{
@@ -873,6 +897,8 @@ flex-direction: row;
 align-items: baseline;
 align-self: flex-start;
 padding-left: 1rem;
+width: 100vw;
+background-color: white;
 }
 .blackCirlce{
   width: 2rem;
@@ -885,21 +911,77 @@ padding-left: 1rem;
   line-height: 1.8rem;
   margin-right:1rem;
 }
-
+.Checkoutbuttons{
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  background-color: white;
+}
 .contactInput{
   display: grid;
   grid-template-columns: 1fr 1fr;
-  margin-left: 1rem;
-  width: calc(95vw - 1rem);
+  width: calc(100vw - 2rem);
+  padding-left: 1rem;
+  padding-right: 1rem;
   grid-column-gap:1rem ;
+  margin-bottom: 1rem;
+  padding-bottom: 2rem;
+  background-color: white;
+}
+.background100{
+background-color: white;
+min-height: 100vh;
+height: fit-content;
+justify-content: center;
+text-align: center;
+}
+.cardInput{
+  display: flex;
+  flex-direction: column;
+  width: calc(100vw - 2rem);
+  padding-left: 1rem;
+  padding-right: 1rem;
+  align-items: center;
+  padding-bottom: 2rem;
+  background-color: white;
+}
+.span2{
+  grid-column: span 2;
+}
+.span2 .MuiFormControl-root{
+  width: 100%;
+  justify-self: center;
+}
+.cardInput  .MuiFormControl-root{
+  width: 90%;
+  margin-top: 1rem;
+}
+.cardInput  .MuiFormControl-root:nth-child(4){
+  margin-top: 0;
+}
+.translateX{
+  transform: translateX(1rem);
+}
+.justify-left{
+  align-items: flex-start;
+  text-align: left;
 }
 .cardImage{
-  width: 25vw;
+  width: 30vw;
   height: 20vw;
   display: block;
   background-position: center;
   background-size: contain;
   background-repeat: no-repeat;
+}
+.reviewOrderh3{
+  width: 100vw;
+  text-align: center;
+  margin: 0;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  background-color: white;
 }
 [data-cardtype="visa"]{
   background-image: url("./components/images/visa.svg");
@@ -907,16 +989,17 @@ padding-left: 1rem;
 [data-cardtype="mastercard"]{
   background-image: url("./components/images/mastercard.svg");
 }
-[data-cardtype="paypal"]{
-  background-image: url("./components/images/paypal.svg");
+[data-cardtype="mobilepay"]{
+  background-image: url("./components/images/mobilepay.svg");
+
 }
 .cardsSelect{
-  padding-top: 1rem;
-  padding-bottom: 1rem;
   width: 100vw;
+  padding:1rem;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
+  background-color: white;
 }
 .left{
   align-self: flex-start;
@@ -933,6 +1016,7 @@ padding-left: 1rem;
   width: 90vw;
   height: 20vw;
   margin-bottom: 1rem;
+  border-radius: 5px;
 }
 .back{
   background-color: transparent;
@@ -1002,6 +1086,14 @@ position: absolute;
 }
 .marginTop1Rem{
   margin-top: 1rem;
+}
+.paymentconfirm{
+  width: 100vw;
+  height: 100vh;
+  background-color: white;
+  display: block;
+  z-index: -10;
+  position: absolute;
 }
 /* ////////Payment Success Animation///////// */
 

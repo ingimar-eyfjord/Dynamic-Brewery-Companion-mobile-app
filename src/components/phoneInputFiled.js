@@ -40,7 +40,7 @@ export default function FormattedInputsPhone(props) {
             ...values,
             [event.target.name]: event.target.value
         });
-        props.setFormData({ ...props.formData, cardnum: event.target.value })
+        props.setFormData({ ...props.formData, Phone: event.target.value })
     };
 
     return (

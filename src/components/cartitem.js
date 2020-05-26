@@ -3,7 +3,6 @@ import SvgMinus from './images/minus'
 import SvgPlus from './images/plus'
 import SvgX from './images/x'
 export default function CartItem(props) {
-
     const [count, setCount] = useState(parseInt(props.howmany))
     function onDelete() {
         props.deleteItem(props.name)
@@ -16,8 +15,8 @@ export default function CartItem(props) {
     return (
         <div className="cartItem card">
             <div className="edit card">
-                <SvgPlus onClick={() => setCount(prevCount => prevCount + 1)} data-set={count} className="plus" />
-                <p>{count}</p>
+                <SvgPlus onClick={() => setCount(prevCount => prevCount + 1)} className="plus" />
+                <p key={props.Editid} id={props.Editid}>{count}</p>
                 <SvgMinus onClick={() => setCount(prevCount => prevCount - 1)} className="minus" />
             </div>
             <div data-img={props.label} className="imgCartBeer card"></div>

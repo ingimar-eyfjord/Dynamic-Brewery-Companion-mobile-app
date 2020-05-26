@@ -20,7 +20,7 @@ function NumberFormatCustom(props) {
             }}
             thousandSeparator
             isNumericString
-            format="#### #### #### ####"
+            format="###"
         />
     );
 }
@@ -31,35 +31,34 @@ NumberFormatCustom.propTypes = {
     onChange: PropTypes.func.isRequired
 };
 
-export default function FormattedInputs(props) {
-    const [valid, Validate] = useState(false)
-    const [helper, help] = useState("")
+export default function CVC(props) {
     const [values, setValues] = React.useState({
         numberformat: ""
     });
+    const [valid, Validate] = useState(false)
+    const [helper, help] = useState("***")
     const handleChange2 = event => {
         setValues({
             ...values,
             [event.target.name]: event.target.value
         });
-        if (event.target.value.length < 16) {
 
+        if (event.target.value.length < 3) {
             Validate(true)
-            help("Please enter a calid card number")
-
-
+            help("Please enter a valid number")
         } else {
             Validate(false)
             help("Perfect")
         }
-        props.setFormData({ ...props.formData, cardnum: event.target.value })
+
+        props.setFormData({ ...props.formData, CVC: event.target.value })
     };
     const handleFocus = event => {
         const emailID = event.target.value;
 
         if (emailID.length == 0) {
             Validate(true)
-            help("Please enter a calid card number")
+            help("Please enter the CVC number")
         }
     }
     const handleBlur = event => {
@@ -69,15 +68,15 @@ export default function FormattedInputs(props) {
     return (
         <TextField
             required
-            label="Card Number"
-            value={values.numberformat}
+            label="CVC"
             helperText={helper}
+            value={values.numberformat}
             onChange={handleChange2}
+            name="numberformat"
+            error={valid}
+            id="formatted-numberformat-input"
             onFocus={handleFocus}
             onBlur={handleBlur}
-            error={valid}
-            name="numberformat"
-            id="formatted-numberformat-input"
             InputProps={{
                 inputComponent: NumberFormatCustom
             }}

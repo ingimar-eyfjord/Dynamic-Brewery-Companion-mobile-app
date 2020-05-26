@@ -8,7 +8,7 @@ function Cards({ formData, setFormData }) {
         );
     };
 
-    const cards = ["visa", "mastercard", "paypal"]
+    const cards = ["visa", "mastercard", "mobilepay"]
     const [chosen, setChosen] = useState();
 
     function selectCartType(e) {

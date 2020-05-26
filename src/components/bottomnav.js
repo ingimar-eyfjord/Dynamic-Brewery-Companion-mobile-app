@@ -1,6 +1,25 @@
-import React from 'react';
+import React, { useState } from "react";
 import { Link } from 'react-router-dom'
 export default function BottomNav(props) {
+
+
+    const [transfrom, Settransform] = useState(100)
+    let lastScrollTop = 0;
+
+    // check if scrolling down or up by comparing last scrollTop, if page ofset is more it's going down, if it's less it's going up.
+    window.addEventListener("scroll", function () {
+        let st = window.pageYOffset || document.documentElement.scrollTop;
+        if (st > lastScrollTop) {
+            Settransform(0)
+        } else {
+            Settransform(100)
+        }
+        lastScrollTop = st <= 0 ? 0 : st; // For Mobile or negative scrolling
+    }, false);
+    let Paralexstyle = {
+        transform: `translateY(${transfrom}%)`
+    }
+
 
     let style = { display: "block" }
     if (props.whishlist.length === 0) {
@@ -18,7 +37,7 @@ export default function BottomNav(props) {
 
     return (
 
-        <div style={props.Paralexstyle} className="BottomNav cardNoRadiusBottom">
+        <div style={Paralexstyle} className="BottomNav cardNoRadiusBottom">
             <Link style={{ textDecoration: 'none' }} className="ContainerSVG" to="/home">
                 <div className="home menuIcon"></div>
                 <p>Home</p>

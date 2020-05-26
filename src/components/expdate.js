@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import NumberFormat from "react-number-format";
 import TextField from "@material-ui/core/TextField";
+import Input from '@material-ui/core/Input';
 
 function NumberFormatCustom(props) {
     const { inputRef, onChange, ...other } = props;
@@ -20,7 +21,7 @@ function NumberFormatCustom(props) {
             }}
             thousandSeparator
             isNumericString
-            format="#### #### #### ####"
+            format="##/##"
         />
     );
 }
@@ -31,9 +32,9 @@ NumberFormatCustom.propTypes = {
     onChange: PropTypes.func.isRequired
 };
 
-export default function FormattedInputs(props) {
+export default function ExpDate(props) {
     const [valid, Validate] = useState(false)
-    const [helper, help] = useState("")
+    const [helper, help] = useState("MM/YY")
     const [values, setValues] = React.useState({
         numberformat: ""
     });
@@ -42,24 +43,41 @@ export default function FormattedInputs(props) {
             ...values,
             [event.target.name]: event.target.value
         });
-        if (event.target.value.length < 16) {
 
+        const emailID = event.target.value;
+        const date = new Date();
+        const result = date.toLocaleDateString("en-GB", { // you can skip the first argument
+            year: "numeric",
+            month: "2-digit",
+            day: "2-digit",
+        });
+        const split = result.split("/")
+        const MMYY = `` + split[1] + `` + split[2].substr(-2) + ``
+
+        const first = event.target.value.substr(0, 2)
+        const second = event.target.value.substr(-2)
+        if (emailID.length < 4 || first > 12 || second > 30) {
             Validate(true)
-            help("Please enter a calid card number")
-
-
+            help("Please enter a valid date")
         } else {
-            Validate(false)
-            help("Perfect")
+            if (first <= split[1] || second < split[2].substr(-2)) {
+                Validate(true)
+                help("Card Expired")
+            } else {
+                Validate(false)
+                help("Perfect")
+            }
         }
-        props.setFormData({ ...props.formData, cardnum: event.target.value })
+
+
+        props.setFormData({ ...props.formData, ExpirationDate: event.target.value })
     };
     const handleFocus = event => {
         const emailID = event.target.value;
 
         if (emailID.length == 0) {
             Validate(true)
-            help("Please enter a calid card number")
+            help("Please enter expiry date")
         }
     }
     const handleBlur = event => {
@@ -69,15 +87,15 @@ export default function FormattedInputs(props) {
     return (
         <TextField
             required
-            label="Card Number"
-            value={values.numberformat}
+            label="Expiration Date"
             helperText={helper}
+            value={values.numberformat}
             onChange={handleChange2}
-            onFocus={handleFocus}
-            onBlur={handleBlur}
-            error={valid}
             name="numberformat"
             id="formatted-numberformat-input"
+            error={valid}
+            onFocus={handleFocus}
+            onBlur={handleBlur}
             InputProps={{
                 inputComponent: NumberFormatCustom
             }}

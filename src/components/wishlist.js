@@ -14,14 +14,14 @@ function Wishlist({ beers, openAboutBeer, makeWishList, whishlist, taps }) {
         })
     })
     return (
-        <>
+        <div className="background100">
             <h2>My Wishlist</h2>
             <p style={whishlist.length != 0 ? { display: "none" } : { display: "block" }}>Nothing in your wishlist</p>
             <Link style={whishlist.length != 0 ? { display: "none" } : { display: "block" }} to="/home"><button className="continueback back">Go back</button></Link>
-            <div style={whishlist.length != 0 ? { minHeight: "90vh" } : { height: "fit-content" }} className="cataloguecontainerwish">
+            <div style={whishlist.length != 0 ? { minHeight: "100vh" } : { height: "fit-content" }} className="cataloguecontainerwish">
                 {wishmapped}
             </div>
-        </>
+        </div>
     )
 }
 

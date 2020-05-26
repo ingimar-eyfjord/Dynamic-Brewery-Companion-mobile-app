@@ -12,15 +12,15 @@ export default function CartPage(props) {
                 name: a[0].name,
                 alc: a[0].alc,
                 label: a[0].label,
-                howmany: "0",
+                howmany: 0,
             };
             grouped.push(this[a[0].name]);
         }
-        this[a[0].name].howmany = (+this[a[0].name].howmany + +1).toString();
+        this[a[0].name].howmany = (+this[a[0].name].howmany + +1);
 
     }, Object.create(null));
 
-    const mapped = grouped.map((cart, index) => <CartItem deleteItem={props.deleteItem} editNumCart={props.editNumCart} key={index} alc={cart.alc} name={cart.name} label={cart.label} howmany={cart.howmany} />)
+    const mapped = grouped.map((cart, index) => <CartItem deleteItem={props.deleteItem} editNumCart={props.editNumCart} key={index} Editid={index} alc={cart.alc} name={cart.name} label={cart.label} howmany={cart.howmany} />)
     const mappedPrice = grouped.map((price) => parseInt(price.howmany))
     const total = mappedPrice.reduce((a, b) => a + b, 0) * 50
     mapped.sort(function (a, b) {
@@ -31,11 +31,11 @@ export default function CartPage(props) {
     return (
         <div className="cartpage">
             <div className="cartup">
-                <SvgCart className="cartPageLogo" />
+                <SvgCart style={{ fill: "white" }} className="cartPageLogo" />
                 <p className="CartName">Your cart</p>
             </div>
             <div className="cartBackground">
-
+                <p style={props.cart.length != 0 ? { display: "none" } : { display: "block" }}>Nothing in your cart</p>
                 {mapped.length === 0 ? <p style={{ color: "white" }}>Nothing in the cart</p> : mapped}
             </div>
 
