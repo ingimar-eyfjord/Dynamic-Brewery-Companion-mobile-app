@@ -10,7 +10,6 @@ import CVC from "./cvc"
 import ExpDate from "./expdate"
 import Email from "./emailinput"
 import Fname from "./Fname"
-import Lname from "./Lname"
 import CardName from "./cardname"
 export default function Checkout(props) {
     const date = new Date()
@@ -26,17 +25,16 @@ export default function Checkout(props) {
         checkedB: false,
     });
     const formDetails = {
-        Firstname: "",
-        Lastname: "",
+        Firstname: localStorage.getItem("Name"),
         CountryCode: "",
-        Phone: "",
-        Email: "",
-        cardholder: "",
-        cardnum: "",
-        CVC: "",
-        ExpirationDate: "",
-        saveCardInfo: "",
-        CardType: paymentType
+        Phone: localStorage.getItem("PhoneNumber"),
+        Email: localStorage.getItem("Email"),
+        cardholder: localStorage.getItem("CardHolder"),
+        cardnum: localStorage.getItem("Card"),
+        CVC: localStorage.getItem("CVC"),
+        ExpirationDate: localStorage.getItem("ExpirationDate"),
+        saveCardInfo: true,
+        CardType: localStorage.getItem("CardType") || paymentType,
     }
     const [formData, setFormData] = useState(formDetails)
     function submitFunc(e) {
@@ -46,7 +44,8 @@ export default function Checkout(props) {
     }
     const handleChange = (event) => {
         setState({ ...state, [event.target.name]: event.target.checked });
-        setFormData({ ...formData, saveCardInfo: event.target.value });
+        setFormData({ ...formData, saveCardInfo: state.checkedB });
+        localStorage.setItem("SaveInfo", event.target.value)
     };
     if (props.cart.length == 0) {
         return (
@@ -83,11 +82,6 @@ export default function Checkout(props) {
                             <Fname className="marginTop1Rem" formData={formData} setFormData={setFormData} ></Fname>
                         </div>
 
-                        <div style={{ marginBottom: "1rem" }} className="span2 marginTop1Rem ">
-
-                            <Lname className="marginTop1Rem" formData={formData} setFormData={setFormData} ></Lname>
-                        </div>
-
                         <div className="phoneInput marginTop1Rem">
                             <CountryCodeselect formData={formData} setFormData={setFormData}></CountryCodeselect>
                         </div>
@@ -113,8 +107,6 @@ export default function Checkout(props) {
                         <FormattedInputs className="marginTop1Rem" formData={formData} setFormData={setFormData} ></FormattedInputs>
                         <CVC className="marginTop1Rem" formData={formData} setFormData={setFormData} ></CVC>
                         <ExpDate formData={formData} setFormData={setFormData} ></ExpDate>
-
-
                         <div style={{ marginLeft: "1rem" }} className="flexrow left">
                             <FormControlLabel className="marginTop1Rem"
                                 control={
@@ -131,9 +123,7 @@ export default function Checkout(props) {
                         </div>
                     </div>
                     <div className="Checkoutbuttons">
-
                         <button className="continueback orange whitetext marginTop2Rem">Continue</button>
-
                         <Link to="/cart" ><button type="button" className="continueback back">Back</button></Link>
                     </div>
 

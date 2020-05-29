@@ -17,7 +17,7 @@ export default function CardName(props) {
         } else if (event.target.value.length >= 1) {
             help("Perfect")
         }
-
+        localStorage.setItem("CardHolder", event.target.value)
         props.setFormData({ ...props.formData, cardholder: event.target.value })
     };
     const handleFocus = event => {
@@ -37,7 +37,7 @@ export default function CardName(props) {
             required
             label="First Name"
             helperText={helper}
-            value={values.numberformat}
+            value={localStorage.getItem("SaveInfo") == false ? localStorage.getItem("CardHolder") : values.numberformat}
             error={valid}
             onChange={handleChange2}
             onFocus={handleFocus}

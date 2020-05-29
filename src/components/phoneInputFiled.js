@@ -41,12 +41,14 @@ export default function FormattedInputsPhone(props) {
             [event.target.name]: event.target.value
         });
         props.setFormData({ ...props.formData, Phone: event.target.value })
+        localStorage.setItem("PhoneNumber", event.target.value)
     };
 
     return (
         <TextField
             label="Phone Number"
-            value={values.numberformat}
+            required
+            value={localStorage.getItem("PhoneNumber") || values.numberformat}
             onChange={handleChange2}
             name="numberformat"
             id="formatted-numberformat-input"

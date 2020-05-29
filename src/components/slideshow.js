@@ -13,7 +13,7 @@ export default function Slideshow() {
 
                         <div className="SlideshowBeer card">
                             <p>Beer Name</p>
-                            <p>125 Left</p>
+                            <p>125 Left on keg</p>
                         </div>
                         <div className="SlideshowBeer card"></div>
                         <div className="SlideshowBeer card"></div>

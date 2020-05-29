@@ -6,6 +6,8 @@ export default function Fname(props) {
     const [values, setValues] = React.useState({
         numberformat: ""
     });
+    // const local = localStorage.getItem('FormDataInLocal');
+    // const json = JSON.parse(local)
     const handleChange2 = event => {
         setValues({
             ...values,
@@ -18,7 +20,7 @@ export default function Fname(props) {
             Validate(false)
             help("Great!! This name will appear with your order on the dashboard above the bar")
         }
-
+        localStorage.setItem("Name", event.target.value)
         props.setFormData({ ...props.formData, Firstname: event.target.value })
     };
     const handleFocus = event => {
@@ -33,12 +35,13 @@ export default function Fname(props) {
         Validate(false)
         help("")
     }
+
     return (
         <TextField
             required
-            label="First Name"
+            label="Name"
             helperText={helper}
-            value={values.numberformat}
+            value={localStorage.getItem("Name") || values.numberformat}
             error={valid}
             onChange={handleChange2}
             onFocus={handleFocus}

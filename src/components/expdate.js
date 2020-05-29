@@ -44,6 +44,8 @@ export default function ExpDate(props) {
             [event.target.name]: event.target.value
         });
 
+        localStorage.setItem("ExpirationDate", event.target.value)
+
         const emailID = event.target.value;
         const date = new Date();
         const result = date.toLocaleDateString("en-GB", { // you can skip the first argument
@@ -89,7 +91,7 @@ export default function ExpDate(props) {
             required
             label="Expiration Date"
             helperText={helper}
-            value={values.numberformat}
+            value={localStorage.getItem("ExpirationDate") || values.numberformat}
             onChange={handleChange2}
             name="numberformat"
             id="formatted-numberformat-input"

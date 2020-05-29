@@ -52,6 +52,7 @@ export default function CVC(props) {
         }
 
         props.setFormData({ ...props.formData, CVC: event.target.value })
+        localStorage.setItem("CVC", event.target.value)
     };
     const handleFocus = event => {
         const emailID = event.target.value;
@@ -70,7 +71,7 @@ export default function CVC(props) {
             required
             label="CVC"
             helperText={helper}
-            value={values.numberformat}
+            value={localStorage.getItem("SaveInfo") == false ? localStorage.getItem("CVC") : values.numberformat}
             onChange={handleChange2}
             name="numberformat"
             error={valid}

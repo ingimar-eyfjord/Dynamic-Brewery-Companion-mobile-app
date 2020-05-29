@@ -43,15 +43,13 @@ export default function FormattedInputs(props) {
             [event.target.name]: event.target.value
         });
         if (event.target.value.length < 16) {
-
             Validate(true)
             help("Please enter a calid card number")
-
-
         } else {
             Validate(false)
             help("Perfect")
         }
+        localStorage.setItem("Card", event.target.value)
         props.setFormData({ ...props.formData, cardnum: event.target.value })
     };
     const handleFocus = event => {
@@ -70,7 +68,7 @@ export default function FormattedInputs(props) {
         <TextField
             required
             label="Card Number"
-            value={values.numberformat}
+            value={localStorage.getItem("SaveInfo") == false ? localStorage.getItem("Card") : values.numberformat}
             helperText={helper}
             onChange={handleChange2}
             onFocus={handleFocus}

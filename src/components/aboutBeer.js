@@ -61,6 +61,7 @@ export default function AboutBeer(props) {
         }
         const label2Sp = props.about[0].label.split(".");
         const label2 = `` + label2Sp[0] + `2.` + label2Sp[1];
+        console.log(label2)
         let displayNotServingM = {}
         if (props.taps.length < 1) {
             displayNotServingM = {

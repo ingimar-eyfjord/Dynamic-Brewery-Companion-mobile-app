@@ -23,6 +23,7 @@ export default function Email(props) {
             Validate(false)
             help("Perfect")
         }
+        localStorage.setItem("Email", event.target.value)
         props.setFormData({ ...props.formData, Email: event.target.value })
     };
     const handleFocus = event => {
@@ -42,7 +43,7 @@ export default function Email(props) {
             required
             label="Email"
             helperText={helper}
-            value={values.numberformat}
+            value={localStorage.getItem("Email") || values.numberformat}
             error={valid}
             onChange={handleChange2}
             onFocus={handleFocus}

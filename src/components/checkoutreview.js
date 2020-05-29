@@ -67,7 +67,6 @@ export default function CheckoutRewview(props) {
                 },
                 body: postData
             }).then(res => res.json().then(data => {
-                console.log(data)
                 const bodyis = {
                     orderID: data.id,
                     GuestName: props.paymentForm.Firstname
@@ -81,7 +80,7 @@ export default function CheckoutRewview(props) {
                         "cache-control": "no-cache"
                     },
                     body: postData2
-                }).then(res => res.json().then(data2 => console.log(data2)))
+                }).then(res => res.json())
             }));
 
             return (
@@ -112,10 +111,6 @@ export default function CheckoutRewview(props) {
                             <p id="Firstname" className="Firstname">{props.paymentForm.Firstname}</p>
                         </div>
                         <div>
-                            <label htmlFor="Lastname">Last Name</label>
-                            <p id="Lastname" className="Firstname">{props.paymentForm.Lastname}</p>
-                        </div>
-                        <div>
                             <label htmlFor="Phone">Phone</label>
                             <p id="Phone" className="Firstname">{props.paymentForm.Phone}</p>
                         </div>
@@ -141,7 +136,7 @@ export default function CheckoutRewview(props) {
                         </div>
                         <div>
                             <label htmlFor="cardnum">Card Number</label>
-                            <p id="cardnum" className="Firstname">{props.paymentForm.cardnum}</p>
+                            <p id="cardnum" className="Firstname">{props.paymentForm.cardnum.substr(0, 4)} {props.paymentForm.cardnum.substr(4, 4)} {props.paymentForm.cardnum.substr(8, 4)} {props.paymentForm.cardnum.substr(12, 4)}</p>
                         </div>
                         <div>
                             <label htmlFor="CVV">CVC</label>
@@ -149,7 +144,7 @@ export default function CheckoutRewview(props) {
                         </div>
                         <div>
                             <label htmlFor="ExpirationDate">Expiration Date</label>
-                            <p id="ExpirationDate" className="Firstname">{props.paymentForm.ExpirationDate}</p>
+                            <p id="ExpirationDate" className="Firstname">{props.paymentForm.ExpirationDate.substr(0, 2)}/{props.paymentForm.ExpirationDate.substr(2, 4)}</p>
                         </div>
                     </div>
 

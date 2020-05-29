@@ -60,10 +60,13 @@ transform: translateY(20%);
   font-size: 2rem;
   margin-top:0;
 }
-.searchField{
+.searchfield{
   width: 90%;
   background-color: white;
   width: 100vw;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
 }
 .searchIcon{
   background-image: url(./components/images/search.png);
@@ -78,16 +81,18 @@ transform: translateY(20%);
   transform: translateY(170%);
 }
 .searchbar{
-  width: calc(100% - 2.5rem);
+  width: calc(100% - 4rem);
   height: 2rem;
   padding-left: 2.5rem;
   margin-left: 1rem;
   font-size: 1.5rem;
   border: none;
+  background-color: white;
 }
-.Bell{
+.bellIcon{
   padding-right: 1rem;
   justify-self: flex-end;
+  width: 2rem;
 }
 .Slideshow{
   height: fit-content;
@@ -172,12 +177,14 @@ background-size: contain;
 }
 .cataloguecontainer{
   background-color: white;
-  height: 250vh;
+  min-height: 50vh;
+  height: fit-content;
   width: 100vw;
   display: grid;
   position: relative;
   padding-bottom: 2rem;
   grid-template-columns: 1fr 1fr;
+  text-align: center;
   grid-template-rows: repeat(auto 1fr);
 }
 .cataloguecontainerwish{
@@ -185,11 +192,8 @@ background-size: contain;
   width: 100vw;
   display: grid;
   position: relative;
-  padding-bottom: 2rem;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: repeat(auto, 2fr);
-  grid-row-gap: 4rem;
-  padding-bottom: 5rem;
 }
 
 .cataloguecontainer > div, .cataloguecontainerwish > div{
@@ -198,10 +202,16 @@ background-size: contain;
 } 
 .CatalogueItemOuterCont{
   position: relative;
-  height: calc((250vh / 5) - 10vh);
+  height: calc(250vh / 5);
+}
+.CatItemPhotoCont{
+  height: 80%;
+  position: relative;
 }
 .CatItemPhoto{
-  height: 90%;
+height: 100%;
+position: absolute;
+width: 100%;
 }
 .CatItemTitle{
   font-size: 1.2rem;
@@ -549,6 +559,33 @@ align-items: center;
 color: white;
 background-color: var(--orange);
 }
+
+.CatAddToCart{
+  border: none;
+  color: white;
+  border-radius: 2px;
+  width: 15%;
+  position: absolute;
+  fill: var(--orange);
+  bottom: 2%;
+  left: 3%;
+  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+}
+
+.addTocart2{
+  position: absolute;
+display: block;
+background-size: contain;
+background-position: center;
+background-repeat: no-repeat;
+width: 20%;
+right: 10px;
+bottom: 2%;
+right: 3%;
+cursor: pointer;
+}
 .absvgcont{
   display: flex;
   flex-direction: column;
@@ -627,6 +664,18 @@ background-color: var(--orange);
 text-align: center;
 transform: translateX(70%);
 }
+.cartLength{  color: white;
+  width: 1rem;
+  height: 1rem;
+  font-size: 0.7rem;
+  border-radius: 50%;
+  position: absolute;
+ background-color: var(--orange);
+ text-align: center;
+ transform: translateX(70%);
+ top: 25%;
+ right: 25%;
+ }
 .wishLength2{
   color: white;
   width: 1.5rem;
@@ -747,7 +796,7 @@ cursor: pointer;
 
 .CatItemPrice{
   color:var(--orange);
-  font-weight: 700;
+  font-weight: 600;
 }
 
 input::-webkit-outer-spin-button,
@@ -1095,6 +1144,66 @@ position: absolute;
   z-index: -10;
   position: absolute;
 }
+.FilterModal{
+  background-color: white;
+  text-align: center;
+  height: 0;
+  width: 100vw;
+}
+.FilterModal > p{
+padding-left: 1rem;
+padding-right: 1rem;
+  cursor: pointer;
+ }
+.FilterModal > div{
+  width: fit-content;
+}
+.DropDown{
+  animation: dropDown 0.2s forwards ease-in-out;
+}
+@keyframes dropDown{
+  from{
+    height: 0;
+  }
+  to{
+    height: 6rem;
+  }
+}
+.DropDownSort{
+  animation: dropDownSort 0.2s forwards ease-in-out;
+}
+@keyframes dropDownSort{
+  from{
+    height: 0;
+  }
+  to{
+    height: 8rem;
+  }
+}
+.CloseUp{
+  animation: CloseUp 0.2s forwards ease-in-out;
+}
+@keyframes CloseUp{
+  from{
+    height: 6rem;
+  }
+  to{
+    height: 0;
+  }
+}
+.NotServingH2{
+  width: 100vw;
+  background-color: white;
+  margin: 0;
+  text-align: center;
+}
+.tapsLoader{
+  display: block;
+  position: relative;
+  background-color: white;
+  height: 50vh;
+  width: 100vw;
+}
 /* ////////Payment Success Animation///////// */
 
  .success-checkmark {
@@ -1325,3 +1434,6 @@ position: absolute;
   }
 }
 
+.displaynone{
+  display: none;
+}
