@@ -58,8 +58,8 @@ export default function CheckoutRewview(props) {
 
             }, Object.create(null));
 
-
             const postData = JSON.stringify(grouped)
+            console.log(postData)
             fetch(URL, {
                 method: "POST",
                 headers: {

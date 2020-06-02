@@ -43,6 +43,8 @@ justify-content: space-between;
 flex-direction: row;
 padding-bottom: 1rem;
 padding: 1rem;
+text-align: center;
+position: relative;
 }
 .logoContainer{
 height: 100%;
@@ -118,30 +120,23 @@ nav{
   position: relative;
   width: fit-content;
   display: flex;
-  height: 30vh;
+  height: 40vh;
   flex-direction: row;
-  padding-right: 3rem;
-  
+  padding-right: 1rem;
+  padding-left: 1rem;
+  padding-bottom: 2rem;
 }
-/* .Slideshow::after{
-content: "";
-pointer-events: none;
-display: block;
-position: absolute;
-width: 100vw;
-height: 20vh;
-background: rgb(255,255,255);
-background: linear-gradient(270deg, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 24%);} */
 
-.SlideshowContainer > div{
-  margin: 0.5%;
+.SlideshowContainer > a > div{
+  margin-top: 1rem;
+  margin-right: 2rem;
   display: block;
   width: 25vh;
-  height: calc(100% - 2rem);
-
+  height: calc(100% - 1rem);
+cursor: pointer;
 }
 
-.SlideshowContainer > div::after{
+.SlideshowContainer > a > div::after{
 content: "";
 display: block;
 height: 100%;
@@ -152,10 +147,15 @@ background: linear-gradient(0deg, rgba(0,0,0,0.41827170321253504) 0%, rgba(255,2
 
 .SlideshowBeer{
 position: relative;
-background-image: url(./components/images/beer/elhefe.png);
 background-position: center;
-background-size: contain;
-
+background-size: cover;
+background-repeat: no-repeat;
+width: 40%;
+}
+.onclickDiv{
+  position: absolute;
+  width: 100%;
+  height: 100%;
 }
 .SlideshowBeer > p:first-child{
   position: absolute;
@@ -282,6 +282,7 @@ justify-self: baseline;
   padding-bottom: 0;
   font-size: 3rem;
   z-index: 999;
+  padding-top: 1rem;
 }
 .BottomNav > .ContainerSVG{
   display: flex;
@@ -388,6 +389,9 @@ cursor: pointer;
   background-image: url("./components/images/beer/fairytaleale.png");
 }
 [data-img="hollaback.png"]{
+  background-image: url("./components/images/beer/hollaback.png");
+}
+[data-img="hollabacklager.png"]{
   background-image: url("./components/images/beer/hollaback.png");
 }
 [data-img="mowintime.png"]{
@@ -1204,6 +1208,14 @@ padding-right: 1rem;
   height: 50vh;
   width: 100vw;
 }
+.slideloader{
+    display: block;
+    position: relative;
+    background-color: white;
+    height: 20vh;
+    width: 100vw;
+
+}
 /* ////////Payment Success Animation///////// */
 
  .success-checkmark {
@@ -1437,3 +1449,44 @@ padding-right: 1rem;
 .displaynone{
   display: none;
 }
+
+
+/* On screens that are 600px or less, set the background color to olive */
+@media screen and (min-width: 1000px) {
+  #root {
+ max-width: 50vw; 
+ position: absolute;
+ transform: translateX(50%); 
+  }
+  .SlideshowContainer{
+    width: 150%;
+  }
+  .aboutBeer > .Slideshow > .SlideshowContainer > .SlideshowBeer {
+  width: 70%;
+  background-size: cover;  
+  }
+.cataloguecontainer{
+
+  width: 100%;
+}
+.BottomNav{
+  width: 100%;
+}
+.Slideshow{
+  width: 100%;
+}
+.searchfield{
+  width: 100%;
+}
+
+}
+@media screen and (min-width: 1900px) {
+  #root {
+ max-width: 30vw; 
+ position: absolute;
+ left: 50vw;
+ transform: translateX(-50%); 
+  }
+
+}
+

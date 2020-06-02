@@ -74,7 +74,7 @@ function App() {
     const newarr = [...beers]
     const whatBeer = newarr.filter(nameis => nameis.name == name);
     setAbout(whatBeer)
-
+    console.log(whatBeer)
   }
   useEffect(() => {
     localStorage.setItem("about", JSON.stringify(about))
@@ -191,7 +191,7 @@ function App() {
       <Route path="/aboutBeer" render={() => <AboutBeer whishlist={whishlist} beers={beers} cart={cart} makeWishList={makeWishList} makeCart={makeCart} about={about} taps={taps.filter(name => name.beer == about[0].name)} />} />
       <Route path="/cart" render={() => <CartPage cart={cart} deleteItem={deleteItem} editNumCart={editNumCart} />} />
       <Route path="/home" render={() => <Searchbar searching={searching} setSearc={setSearc} />} />
-      <Route path="/home" render={() => <Slideshow />} />
+      <Route path="/home" render={() => <Slideshow openAboutBeer={openAboutBeer} taps={taps} beers={beers} />} />
       <Route path="/home" render={() => <Filterandsearch sortState={sortState} setsortState={setsortState} setFilterState={setFilterState} filterState={filterState} catalogueState={catalogueState} />} />
       <Route path="/home" render={() => <FilterModal setFilterState={setFilterState} filterState={filterState} catalogueState={catalogueState} setCatState={setCatState} />} />
       <Route path="/home" render={() => <SortModal setCatalogueSort={setCatalogueSort} sortState={sortState} setsortState={setsortState} />} />
