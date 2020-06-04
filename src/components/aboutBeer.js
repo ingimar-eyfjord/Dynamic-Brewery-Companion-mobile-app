@@ -15,7 +15,7 @@ export default function AboutBeer(props) {
     // Then I redirect the user back to the home page
     if (props.about.length == 0) {
         return (
-            <Redirect to="/index.html"></Redirect>
+            <Redirect to="/index.php"></Redirect>
         )
     } else {
 
@@ -127,7 +127,7 @@ export default function AboutBeer(props) {
                         </div>
                     </div>
                     <div className="buttons">
-                        <Link to="/index.html">
+                        <Link to="/index.php">
                             <div className="absvgcont">
                                 <SvgArrow className="SVGAbout" />
                             </div>

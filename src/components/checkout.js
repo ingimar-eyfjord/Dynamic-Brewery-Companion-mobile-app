@@ -49,7 +49,7 @@ export default function Checkout(props) {
     };
     if (props.cart.length == 0) {
         return (
-            <Redirect to="/index.html"></Redirect>
+            <Redirect to="/index.php"></Redirect>
         )
     } else {
         if (confirm === true) {

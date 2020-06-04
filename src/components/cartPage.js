@@ -46,7 +46,7 @@ export default function CartPage(props) {
             </div>
             <div className="cartBtns">
                 <Link to="/checkout"><button className="continueback" disabled={mapped.length === 0}>Checkout</button></Link>
-                <Link to="/index.html"><button className="continueback" style={mapped.length === 0 ? { backgroundColor: "var(--orange)" } : { backgroundColor: "transparent", border: "solid", borderColor: "black", borderWidth: "1px", color: "black" }}>Continue Shopping</button></Link>
+                <Link to="/index.php"><button className="continueback" style={mapped.length === 0 ? { backgroundColor: "var(--orange)" } : { backgroundColor: "transparent", border: "solid", borderColor: "black", borderWidth: "1px", color: "black" }}>Continue Shopping</button></Link>
             </div>
         </div>
     )
