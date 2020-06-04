@@ -48,19 +48,20 @@ export default function Slideshow({ beers, openAboutBeer, taps }) {
         }, [delay]);
     }
     Counter()
-
-    console.log(taps)
     let array = []
     taps.forEach(e => {
         display.forEach(et => {
-            console.log(e)
             if (e.beer === et.name) {
                 array.push(e)
             }
         })
     })
-
-    const map = display.map((e, index) => <Link to="/aboutBeer" key={index} data-id={e.name} onClick={openAboutBeer}> <div className="onclickDiv" className="SlideshowBeer card" data-id={e.name} data-img={`` + e.name.toLowerCase().replace(/ /g, "") + `.png`} key={index}><p>{e.name}</p><p>{Math.floor(array[index].level / 50)}  Left on keg</p></div></Link>)
+    console.log(display)
+    console.log(array)
+    let map = []
+    if (array[0] != undefined) {
+        map = display.map((e, index) => <Link to="/aboutBeer" key={index} data-id={e.name} onClick={openAboutBeer}> <div className="onclickDiv" className="SlideshowBeer card" data-id={e.name} data-img={`` + e.name.toLowerCase().replace(/ /g, "") + `.png`} key={index}><p>{e.name}</p><p>{array[index] == Number ? Math.floor(array[index].level / 50) : 20}  Left on keg</p></div></Link>)
+    }
 
     if (map == 0) {
 

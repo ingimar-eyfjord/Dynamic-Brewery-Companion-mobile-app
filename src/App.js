@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, Component } from "react";
 import Nav from "./components/nav"
 import Searchbar from "./components/searchbar"
 import Slideshow from "./components/slideshow"
@@ -14,9 +14,10 @@ import PaymentConfirm from "./components/paymentConfirm"
 import Wishlist from "./components/wishlist"
 import FilterModal from "./components/filter"
 import SortModal from "./components/sort"
+import { unstable_batchedUpdates } from "react-dom";
 function App() {
-  const URL = "https://foobar-app-3.herokuapp.com/"
-  const Beers = "https://foobar-app-3.herokuapp.com/beertypes"
+  const URL = "https://finalfoobarapp.herokuapp.com/"
+  const Beers = "https://finalfoobarapp.herokuapp.com/beertypes"
   const tapsArray = []
   const [taps, setTaps] = useState(tapsArray)
   const beersArray = []
@@ -169,9 +170,15 @@ function App() {
     setCart(array)
   }
 
+  // Here is a nice short example on how I'm using useEffect
+  // to render only once, as when all states update so will 
+  // all functions inside this Component, I only want localStorage
+  // for cart to be set when cart updates and this is how I achieved that
   useEffect(() => {
     localStorage.setItem("cart", JSON.stringify(cart))
   }, [cart])
+  // Here in the bottom you can see that inside the brackets the cart is the state 
+  // which useEffect will be tied to.
 
   const [catalogueState, setCatState] = useState("All Products");
   const [filterState, setFilterState] = useState("closed");
@@ -180,27 +187,41 @@ function App() {
   const [CatalogueSort, setCatalogueSort] = useState("A - Z");
   const [searching, setSearc] = useState("")
 
+  //  { Here is an example of a state, it was meant to hold the Notifications
+  //   however delepment had to stop. The notification is the state and setNotification
+  //   is the function that will set it, refresh it or render inside it the notifications}
   const notiArray = []
   const [notification, setNotification] = useState(notiArray);
-
+  // Notice the const notiArray is = to an empty array, when defining the state it is used alignSelf: 'center',
+  // the template saying that the state will be an array, it could also be written likethis => useState([]);
 
   return (
     <>
-      <Redirect to="/home"></Redirect>
-      <Route path="/home" render={() => <Nav notification={notification} />} />
+      {/* As the user lands on the main page, all elements 
+    that have route path-to something will not be rendered
+    unless Reac-Dom-Router directs it. 
+    So I make a default redirect to the home at the initial load. */}
+      <Redirect to="/index.html"></Redirect>
+      {/* The route path attribute will define when an element is to be 
+      rebdered, in the case below it's an element of the index.html */}
+      <Route path="/index.html" render={() => <Nav notification={notification} />} />
+      {/* The bottomnav is the bottom navigation component and is displayed
+      on all pages, meanin git will not receive a route tag and so will
+      be rendered on all pages. */}
+      <BottomNav whishlist={whishlist} cart={cart} />
       <Route path="/aboutBeer" render={() => <AboutBeer whishlist={whishlist} beers={beers} cart={cart} makeWishList={makeWishList} makeCart={makeCart} about={about} taps={taps.filter(name => name.beer == about[0].name)} />} />
       <Route path="/cart" render={() => <CartPage cart={cart} deleteItem={deleteItem} editNumCart={editNumCart} />} />
-      <Route path="/home" render={() => <Searchbar searching={searching} setSearc={setSearc} />} />
-      <Route path="/home" render={() => <Slideshow openAboutBeer={openAboutBeer} taps={taps} beers={beers} />} />
-      <Route path="/home" render={() => <Filterandsearch sortState={sortState} setsortState={setsortState} setFilterState={setFilterState} filterState={filterState} catalogueState={catalogueState} />} />
-      <Route path="/home" render={() => <FilterModal setFilterState={setFilterState} filterState={filterState} catalogueState={catalogueState} setCatState={setCatState} />} />
-      <Route path="/home" render={() => <SortModal setCatalogueSort={setCatalogueSort} sortState={sortState} setsortState={setsortState} />} />
-      <Route path="/home" render={() => <Catalogue setNotification={setNotification} cart={cart} makeCart={makeCart} CatalogueSort={CatalogueSort} searching={searching} catalogueState={catalogueState} taps={taps} whishlist={whishlist} makeWishList={makeWishList} openAboutBeer={openAboutBeer} beers={beers} isAuthed={true} />} />
+      <Route path="/index.html" render={() => <Searchbar searching={searching} setSearc={setSearc} />} />
+      <Route path="/index.html" render={() => <Slideshow openAboutBeer={openAboutBeer} taps={taps} beers={beers} />} />
+      <Route path="/index.html" render={() => <Filterandsearch sortState={sortState} setsortState={setsortState} setFilterState={setFilterState} filterState={filterState} catalogueState={catalogueState} />} />
+      <Route path="/index.html" render={() => <FilterModal setFilterState={setFilterState} filterState={filterState} catalogueState={catalogueState} setCatState={setCatState} />} />
+      <Route path="/index.html" render={() => <SortModal setCatalogueSort={setCatalogueSort} sortState={sortState} setsortState={setsortState} />} />
+      <Route path="/index.html" render={() => <Catalogue setNotification={setNotification} cart={cart} makeCart={makeCart} CatalogueSort={CatalogueSort} searching={searching} catalogueState={catalogueState} taps={taps} whishlist={whishlist} makeWishList={makeWishList} openAboutBeer={openAboutBeer} beers={beers} isAuthed={true} />} />
       <Route path="/checkout" render={() => <Checkout cart={cart} setpaymentForm={setpaymentForm} />} />
       <Route path="/CheckoutRewview" render={() => <CheckoutRewview paymentForm={paymentForm} deleteItem={deleteItem} editNumCart={editNumCart} cart={cart} />} />
       <Route path="/PaymentConfirm" render={() => <PaymentConfirm clearCart={clearCart} paymentForm={paymentForm} cart={cart} />} />
       <Route path="/Wishlist" render={() => <Wishlist cart={cart} makeCart={makeCart} taps={taps} whishlist={whishlist} makeWishList={makeWishList} openAboutBeer={openAboutBeer} beers={beers} isAuthed={true} />} />
-      <BottomNav whishlist={whishlist} cart={cart} />
+
     </>
   )
 }

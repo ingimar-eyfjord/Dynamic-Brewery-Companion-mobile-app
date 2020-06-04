@@ -21,11 +21,6 @@ export default function Beercomponent(props) {
         })
     }
     let Cartstyle = { display: "block" }
-    // if (props.cart.length === 0) {
-    //     Cartstyle = {
-    //         display: "none"
-    //     }
-    // }
     function addtocart() {
         const newArr = [...props.beers];
         const whatBeer = newArr.filter(e => e.name === props.name)

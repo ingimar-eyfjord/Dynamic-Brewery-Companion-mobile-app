@@ -11,9 +11,11 @@ export default function AboutBeer(props) {
     const [seemore, setSee] = useState("none")
     const [seemoreP, setSeep] = useState("See more...")
 
+    // If about.length (which is the beer I want to display on this page) is 0 (empty)
+    // Then I redirect the user back to the home page
     if (props.about.length == 0) {
         return (
-            <Redirect to="/home"></Redirect>
+            <Redirect to="/index.html"></Redirect>
         )
     } else {
 
@@ -61,7 +63,6 @@ export default function AboutBeer(props) {
         }
         const label2Sp = props.about[0].label.split(".");
         const label2 = `` + label2Sp[0] + `2.` + label2Sp[1];
-        console.log(label2)
         let displayNotServingM = {}
         if (props.taps.length < 1) {
             displayNotServingM = {
@@ -126,7 +127,7 @@ export default function AboutBeer(props) {
                         </div>
                     </div>
                     <div className="buttons">
-                        <Link to="/home">
+                        <Link to="/index.html">
                             <div className="absvgcont">
                                 <SvgArrow className="SVGAbout" />
                             </div>

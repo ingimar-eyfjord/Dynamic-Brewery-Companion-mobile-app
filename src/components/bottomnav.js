@@ -38,7 +38,7 @@ export default function BottomNav(props) {
     return (
 
         <div style={Paralexstyle} className="BottomNav cardNoRadiusBottom">
-            <Link style={{ textDecoration: 'none' }} className="ContainerSVG" to="/home">
+            <Link style={{ textDecoration: 'none' }} className="ContainerSVG" to="/index.html">
                 <div className="home menuIcon"></div>
                 <p>Home</p>
             </Link>

@@ -17,7 +17,7 @@ export default function CheckoutRewview(props) {
     }
     if (props.cart.length == 0) {
         return (
-            <Redirect to="/home"></Redirect>
+            <Redirect to="/index.html"></Redirect>
         )
     } else {
 
@@ -44,7 +44,7 @@ export default function CheckoutRewview(props) {
         if (confirmed === true) {
 
 
-            const URL = "https://foobar-app-3.herokuapp.com/order"
+            const URL = "https://finalfoobarapp.herokuapp.com/order"
             let grouped = [];
             props.cart.forEach(function (a) {
                 if (!this[a[0].name]) {
@@ -59,7 +59,6 @@ export default function CheckoutRewview(props) {
             }, Object.create(null));
 
             const postData = JSON.stringify(grouped)
-            console.log(postData)
             fetch(URL, {
                 method: "POST",
                 headers: {
@@ -67,6 +66,7 @@ export default function CheckoutRewview(props) {
                 },
                 body: postData
             }).then(res => res.json().then(data => {
+                console.log(data)
                 const bodyis = {
                     orderID: data.id,
                     GuestName: props.paymentForm.Firstname
@@ -167,7 +167,11 @@ export default function CheckoutRewview(props) {
                     </div>
                     <div className="Checkoutbuttons">
                         <button disabled={props.cart.length === 0} onClick={confirmorder} className="continueback orange whitetext">Confirm</button>
+
+                        {/* Here is a simple example of a link compnent, where if the component around the 
+                        link tags is clicked it will link to the checkout page */}
                         <Link to="/checkout" > <button className="continueback back">Back</button></Link>
+
                     </div>
                 </>
             )

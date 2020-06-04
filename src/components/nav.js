@@ -7,7 +7,7 @@ export default function Nav() {
             <div className="logoContainer">
                 <img className="logoOrange" src={Logo} alt="Logo" />
             </div>
-            <p className="nameofStore">Foobar Store</p>
+            <h1 className="nameofStore">Foobar Store</h1>
 
             <SVGBell className="bellIcon cursor" style={{ fill: "var(--orange)" }}></SVGBell>
         </nav>

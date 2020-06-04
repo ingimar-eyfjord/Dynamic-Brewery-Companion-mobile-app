@@ -66,7 +66,7 @@ export default function PaymentConfirm(props) {
                     </div>
                 </div>
             </div>
-            <Link to="/home" > <button className="continueback orange whitetext">Home</button></Link>
+            <Link to="/index.html" > <button className="continueback orange whitetext">Home</button></Link>
         </>
     )
 }
